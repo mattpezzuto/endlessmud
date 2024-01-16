@@ -1,0 +1,19 @@
+.game-container {
+    border: 1px solid white;
+    padding: 10px;
+    display: flex;
+  }
+
+  .image-container {
+    width: 33%;
+  }
+
+  .game-output {
+    width: 67%;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid white;
+    padding: 10px;
+    margin-left: 10px;
+  }
