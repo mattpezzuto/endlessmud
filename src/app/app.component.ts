@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { Player } from '../player.model';
 import { PlayerService } from './player.service';
+import { GitHubUtilService } from './github-util.service';
 
 @Component({
   selector: 'app-root',
@@ -11,28 +12,52 @@ import { PlayerService } from './player.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
+
 export class AppComponent {
   title = 'EndlessMud';
-  players: Player[] = [];
+  players: any;
 
-  constructor(private router: Router, private playerService: PlayerService) {
-      // Create sample players
-    const player1 = new Player('Marcus', 'Warrior', 100, 50);
-    const player2 = new Player('El Cid', 'Bard', 80, 100);
-    const player3 = new Player('Gandalf', 'Wizard', 80, 100);
+  constructor(private router: Router, private playerService: PlayerService, private githubUtilService: GitHubUtilService) {
+  }
 
-    // Add players to the list
-    this.players.push(player1, player2, player3);
+  gistData: any;
 
+  ngOnInit() {
+    // Load initial Gist data
+    this.getGistData();
+  }
+
+  getGistData() {
+    this.githubUtilService.getGistData().then((data: any) => {
+      this.gistData = data;
+
+      // const filenameToExtract = 'Players.json'; // Replace with the desired filename
+      // const fileContent = extractFileContent(data, filenameToExtract);
+
+      // console.log(fileContent);
+      console.log(data.files["Players.json"].content);
+      const fileContent = data.files["Players.json"].content;
+      this.players = JSON.parse(fileContent);
+
+
+
+    });
   }
   
   navigateToMain() {
-    this.playerService.setPlayers(this.players);
     this.router.navigate(['/mainScreen']);
   }
   navigateToCharacterSelection() {
     this.router.navigate(['/characterScreen']);
   }
 
+  // savePlayers() {
+  //   console.log( this.gitLabUtil.getGameData() );
+  // }
 
 }
+
+
+

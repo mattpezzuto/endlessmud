@@ -3,8 +3,9 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { PlayerService } from './player.service';
+import { GitLabUtil } from './gitlhub-utils';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), PlayerService]
+  providers: [provideRouter(routes), PlayerService, GitLabUtil]
   
 };

@@ -1,1 +1,109 @@
 <p>character-selection works!</p>
+
+<h1>Gold = {{gold}} </h1>
+<h1>Gist Data App</h1>
+<button (click)="getGistData()">Get Gist Data</button>
+<!-- <div *ngIf="gistData">
+  <h2>Gist Data:</h2>
+  <pre>{{ gistData | json }}</pre>
+</div> -->
+
+<div *ngIf="players">
+    <h2>Players:</h2>
+    <ul>
+      <li *ngFor="let player of players">
+        {{ player.name }} - {{ player.playerClass }} - Life: {{ player.life }} / {{ player.lifeMax}}
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="updateLifeTeamB()">Update Life for TeamB</button>
+  <button (click)="saveToCloud()">Save</button>"
+
+
+  <!-- app.component.html -->
+
+<!-- <div class="container">
+    <div class="table-container">
+      <h2>Team A</h2>
+
+      <table cdkDropList (cdkDropListDropped)="onDrop($event')">
+        <tr *ngFor="let player of teamA" cdkDrag>
+          <td>{{ player.name }}</td>
+          <td>{{ player.position }}</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="table-container">
+      <h2>Team B</h2>
+      <table cdkDropList (cdkDropListDropped)="onDrop($event)">
+        <tr *ngFor="let player of teamB" cdkDrag>
+          <td>{{ player.name }}</td>
+          <td>{{ player.position }}</td>
+        </tr>
+      </table>
+    </div>
+  </div> -->
+  
+  <!-- <div class="example-container">
+    <h2>To do</h2>
+  
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (player of teamA; track player) {
+        <div class="example-box" cdkDrag>{{player.name}}</div>
+      }
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Done</h2>
+  
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (player of teamB; track player) {
+        <div class="example-box" cdkDrag>{{player.name}}</div>
+      }
+    </div>
+  </div> -->
+
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h2>TeamA</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="teamA"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of teamA; track item) {
+          <div class="example-box" cdkDrag>{{item.name}}</div>
+        }
+      </div>
+    </div>
+  
+    <div class="example-container">
+      <h2>TeamB</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="teamB"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of teamB; track item) {
+          <div class="example-box" cdkDrag>{{item.name}}</div>
+        }
+      </div>
+    </div>
+  </div>
