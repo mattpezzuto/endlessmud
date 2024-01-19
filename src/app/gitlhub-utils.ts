@@ -12,7 +12,7 @@ export class GitLabUtil {
 
   private githubApiUrl = 'https://api.github.com';
   private headers = {
-    Authorization: 'Bearer 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', 
+    Authorization: 'Bearer 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', 
   };
 
   getGameData(): Promise<any> {
